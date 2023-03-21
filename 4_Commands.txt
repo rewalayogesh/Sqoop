@@ -1,0 +1,31 @@
+mysql commands:
+-----------------------------------------------------------------------
+ 1.  mysql --user=training --password=training movielens;
+
+ 2. mysql> DESCRIBE movie;
+
+ 3. mysql> SELECT * FROM movie LIMIT 5;
+
+----------------------------------------------------------------------
+
+sqoop commands :
+
+1.  sqoop list-databases \
+--connect jdbc:mysql://localhost \
+--username training --password training
+
+
+2.  sqoop list-tables \
+--connect jdbc:mysql://localhost/movielens \
+ --username training --password training
+
+3.  sqoop import \
+ --connect jdbc:mysql://localhost/movielens \
+ --table movie --fields-terminated-by '\t' \
+ --username training --password training 
+
+
+-------------------------------------------------------------------
+hadoop terminal
+hadoop fs -ls movie
+$ hadoop fs -tail movie/part-m-00000

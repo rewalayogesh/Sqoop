@@ -1,0 +1,52 @@
+[training@localhost ~]$ hadoop fs -ls 
+Found 2 items
+drwxr-xr-x   - training supergroup          0 2023-03-02 17:47 HiveFile
+drwxr-xr-x   - training supergroup          0 2023-03-06 16:29 movie
+[training@localhost ~]$ hadoop fs -ls movie
+Found 6 items
+-rw-r--r--   1 training supergroup          0 2023-03-06 16:29 movie/_SUCCESS
+drwxr-xr-x   - training supergroup          0 2023-03-06 16:28 movie/_logs
+-rw-r--r--   1 training supergroup      24596 2023-03-06 16:28 movie/part-m-00000
+-rw-r--r--   1 training supergroup      24740 2023-03-06 16:28 movie/part-m-00001
+-rw-r--r--   1 training supergroup      26371 2023-03-06 16:29 movie/part-m-00002
+-rw-r--r--   1 training supergroup      26345 2023-03-06 16:29 movie/part-m-00003
+[training@localhost ~]$ hadoop fs -tail movie/part-m-00000
+riday	1940
+952	Around the World in 80 Days	1956
+953	It's a Wonderful Life	1946
+954	Mr. Smith Goes to Washington	1939
+955	Bringing Up Baby	1938
+956	Penny Serenade	1941
+957	Scarlet Letter, The	1926
+958	Lady of Burlesque	1943
+959	Of Human Bondage	1934
+960	Angel on My Shoulder	1946
+961	Little Lord Fauntleroy	1936
+962	They Made Me a Criminal	1939
+963	Inspector General, The	1949
+964	Angel and the Badman	1947
+965	39 Steps, The	1935
+966	Walk in the Sun, A	1945
+967	Outlaw, The	1943
+968	Night of the Living Dead	1968
+969	African Queen, The	1951
+970	Beat the Devil	1954
+971	Cat on a Hot Tin Roof	1958
+972	Last Time I Saw Paris, The	1954
+973	Meet John Doe	1941
+974	Algiers	1938
+975	Something to Sing About	1937
+976	Farewell to Arms, A	1932
+977	Moonlight Murder	1936
+978	Blue Angel, The	0
+979	Nothing Personal	1995
+980	In the Line of Duty 2	1987
+981	Dangerous Ground	1997
+982	Picnic	1955
+983	Madagascar Skin	1995
+984	Pompatus of Love, The	1996
+985	Small Wonders	1996
+986	Fly Away Home	1996
+987	Bliss	1997
+988	Grace of My Heart	1996
+[training@localhost ~]$ 

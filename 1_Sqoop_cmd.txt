@@ -1,0 +1,79 @@
+[training@localhost ~]$ sqoop list-databases \
+> --connect jdbc:mysql://localhost \
+> --username training --password training
+23/03/06 16:24:09 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/06 16:24:09 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+information_schema
+hue
+metastore
+movielens
+mysql
+test
+training
+[training@localhost ~]$ sqoop list-tables \
+> --connect jdbc:mysql://localhost/movielens \
+> --username training --password training
+23/03/06 16:25:32 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/06 16:25:32 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+genre
+movie
+moviegenre
+movierating
+occupation
+user
+[training@localhost ~]$ sqoop import \
+> --connect jdbc:mysql://localhost/movielens \
+> --table movie --fields-terminated-by '\t' \
+> --username training --password training
+23/03/06 16:28:42 WARN tool.BaseSqoopTool: Setting your password on the command-line is insecure. Consider using -P instead.
+23/03/06 16:28:42 INFO manager.MySQLManager: Preparing to use a MySQL streaming resultset.
+23/03/06 16:28:42 INFO tool.CodeGenTool: Beginning code generation
+23/03/06 16:28:42 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `movie` AS t LIMIT 1
+23/03/06 16:28:42 INFO manager.SqlManager: Executing SQL statement: SELECT t.* FROM `movie` AS t LIMIT 1
+23/03/06 16:28:42 INFO orm.CompilationManager: HADOOP_HOME is /usr/lib/hadoop
+Note: /tmp/sqoop-training/compile/fd7d89b00f8fa2743cedbb8decb44cfd/movie.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+23/03/06 16:28:43 INFO orm.CompilationManager: Writing jar file: /tmp/sqoop-training/compile/fd7d89b00f8fa2743cedbb8decb44cfd/movie.jar
+23/03/06 16:28:43 WARN manager.MySQLManager: It looks like you are importing from mysql.
+23/03/06 16:28:43 WARN manager.MySQLManager: This transfer can be faster! Use the --direct
+23/03/06 16:28:43 WARN manager.MySQLManager: option to exercise a MySQL-specific fast path.
+23/03/06 16:28:43 INFO manager.MySQLManager: Setting zero DATETIME behavior to convertToNull (mysql)
+23/03/06 16:28:44 INFO mapreduce.ImportJobBase: Beginning import of movie
+23/03/06 16:28:44 WARN mapred.JobClient: Use GenericOptionsParser for parsing the arguments. Applications should implement Tool for the same.
+23/03/06 16:28:46 INFO db.DataDrivenDBInputFormat: BoundingValsQuery: SELECT MIN(`id`), MAX(`id`) FROM `movie`
+23/03/06 16:28:46 INFO mapred.JobClient: Running job: job_202303061611_0001
+23/03/06 16:28:47 INFO mapred.JobClient:  map 0% reduce 0%
+23/03/06 16:28:58 INFO mapred.JobClient:  map 50% reduce 0%
+23/03/06 16:29:06 INFO mapred.JobClient:  map 75% reduce 0%
+23/03/06 16:29:07 INFO mapred.JobClient:  map 100% reduce 0%
+23/03/06 16:29:08 INFO mapred.JobClient: Job complete: job_202303061611_0001
+23/03/06 16:29:08 INFO mapred.JobClient: Counters: 23
+23/03/06 16:29:08 INFO mapred.JobClient:   File System Counters
+23/03/06 16:29:08 INFO mapred.JobClient:     FILE: Number of bytes read=0
+23/03/06 16:29:08 INFO mapred.JobClient:     FILE: Number of bytes written=796544
+23/03/06 16:29:08 INFO mapred.JobClient:     FILE: Number of read operations=0
+23/03/06 16:29:08 INFO mapred.JobClient:     FILE: Number of large read operations=0
+23/03/06 16:29:08 INFO mapred.JobClient:     FILE: Number of write operations=0
+23/03/06 16:29:08 INFO mapred.JobClient:     HDFS: Number of bytes read=412
+23/03/06 16:29:08 INFO mapred.JobClient:     HDFS: Number of bytes written=102052
+23/03/06 16:29:08 INFO mapred.JobClient:     HDFS: Number of read operations=4
+23/03/06 16:29:08 INFO mapred.JobClient:     HDFS: Number of large read operations=0
+23/03/06 16:29:08 INFO mapred.JobClient:     HDFS: Number of write operations=4
+23/03/06 16:29:08 INFO mapred.JobClient:   Job Counters 
+23/03/06 16:29:08 INFO mapred.JobClient:     Launched map tasks=4
+23/03/06 16:29:08 INFO mapred.JobClient:     Total time spent by all maps in occupied slots (ms)=35112
+23/03/06 16:29:08 INFO mapred.JobClient:     Total time spent by all reduces in occupied slots (ms)=0
+23/03/06 16:29:08 INFO mapred.JobClient:     Total time spent by all maps waiting after reserving slots (ms)=0
+23/03/06 16:29:08 INFO mapred.JobClient:     Total time spent by all reduces waiting after reserving slots (ms)=0
+23/03/06 16:29:08 INFO mapred.JobClient:   Map-Reduce Framework
+23/03/06 16:29:08 INFO mapred.JobClient:     Map input records=3881
+23/03/06 16:29:08 INFO mapred.JobClient:     Map output records=3881
+23/03/06 16:29:08 INFO mapred.JobClient:     Input split bytes=412
+23/03/06 16:29:08 INFO mapred.JobClient:     Spilled Records=0
+23/03/06 16:29:08 INFO mapred.JobClient:     CPU time spent (ms)=2470
+23/03/06 16:29:08 INFO mapred.JobClient:     Physical memory (bytes) snapshot=352346112
+23/03/06 16:29:08 INFO mapred.JobClient:     Virtual memory (bytes) snapshot=1601753088
+23/03/06 16:29:08 INFO mapred.JobClient:     Total committed heap usage (bytes)=287506432
+23/03/06 16:29:08 INFO mapreduce.ImportJobBase: Transferred 0 bytes in 24.5987 seconds (0 bytes/sec)
+23/03/06 16:29:08 INFO mapreduce.ImportJobBase: Retrieved 3881 records.
+[training@localhost ~]$
